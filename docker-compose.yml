@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+    debug-container:
+      image: nitka-django
+      build: ./
+      logging:
+        driver: "json-file"
+        options:
+          max-size: "1000m"
+          max-file: "5"
+      working_dir: /usr/src/app
+      volumes:
+        - ./:/usr/src/app
+      ports:
+        - "8082:8082"
+      command: bash -c "tail -f requirements.txt"
+
+    webtest:
+      image: nitka-django
+      build: ./
+      logging:
+        driver: "json-file"
+        options:
+          max-size: "1000m"
+          max-file: "5"
+      working_dir: /usr/src/app
+      volumes:
+        - ./:/usr/src/app
+      ports:
+        - "8080:8080"
+      command: bash -c "pip install -r requirements.txt && python manage.py runserver 0.0.0.0:8080"
+
+    nodejs:
+      image: node:18
+      logging:
+        driver: "json-file"
+        options:
+          max-size: "1000m"
+          max-file: "5"
+      working_dir: /usr/src/app
+      volumes:
+        - ./:/usr/src/app
+      command: bash -c "tail -f requirements.txt"

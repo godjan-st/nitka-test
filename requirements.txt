@@ -1,0 +1,8 @@
+asgiref==3.8.1
+Django==5.1.4
+django-jinja==2.11.0
+django-vite==3.0.5
+Jinja2==3.1.4
+MarkupSafe==3.0.2
+pillow==11.0.0
+sqlparse==0.5.2
